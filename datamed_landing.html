@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <title>microRNA-221/222 knockdown effect on fulvestrant-resistant MCF7 breast cancer cells |  bioCADDIE Data Discovery Index</title>
+        <meta name="description" content="DataMed is a prototype biomedical data search engine. Its goal is to discover data sets across data repositories or data aggregators. In the future it will allow searching outside these boundaries. DataMed supports the NIH-endorsed FAIR principles of Findability, Accessibility, Interoperability and Reusability of datasets with current functionality assisting in finding datasets and providing access information about them.">
+        <meta name="author" content="bioCaddie Core Development Team.">
+        <meta name="keywords" content="DataMed,
+                                        biomedical data search engine,
+                                        biomedical data,
+                                        Healthcare data,
+                                        data discovery index,
+                                        bioCADDIE,
+                                        biomedical and healthcare data discovery index ecosystem,
+                                        NIH,
+                                        National Institutes of Health,
+                                        BD2K,
+                                        Big Data to Knowledge,
+                                        data repository,
+                                        data aggregator,
+                                        FAIR,
+                                        Findability,
+                                        Accessibility,
+                                        Interoperability,
+                                        Reusability,
+                                        dataset,
+                                        data set,
+                                        metadata,
+                                        DATS,
+                                        Data Tag Suite,
+                                        citation,
+                                        publication
+                                        ">
+
+        <link href="https://datamed.org/img/favicon.png" rel="icon" >
+
+        <!-- Styles -->
+        <link href="https://datamed.org/vendor/jquery/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="https://datamed.org/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://datamed.org/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://datamed.org/css/theme.css" rel="stylesheet">
+        <link href="https://datamed.org/css/expand.css" rel="stylesheet">
+
+
+        <!-- Scripts -->
+
+       <!-- <script src="https://datamed.org/vendor/bootstrap/js/bootstrap.min.js"></script>-->
+        <script src="https://d3js.org/d3-format.v1.min.js"></script>
+
+        <script src="https://datamed.org/vendor/jquery/jquery-1.11.3.min.js"></script>
+        <script src="https://datamed.org/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
+        <script src="https://datamed.org/vendor/d3/d3.v3.min.js"></script>
+        <script src="https://datamed.org/js/jsapi.js"></script>
+
+        <!--[if lt IE 9]>
+        <script src="https://datamed.org/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://datamed.org/js/html5shiv.min.js"></script>
+        <script src="https://datamed.org/js/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="https://datamed.org/js/js.cookie.js"></script>
+
+        <!---For sign in using Google account-->
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="829717013649-0j7el8re8ka2d5tgqm87c5msek06kgmu.apps.googleusercontent.com">
+        <script src="https://datamed.org/js/platform.js" async defer></script>
+        <script type="text/javascript" src="https://datamed.org/js/loadingoverlay.min.js"></script>
+        <script type="text/javascript" src="https://datamed.org/js/global.scripts.js"></script>
+
+
+        <script src="https://datamed.org/vendor/d3/d3.layout.cloud.js"></script>
+        <script src="https://datamed.org/vendor/d3/d3-tip.js"></script>
+
+        <!--Usability Tracking-->
+        <script src="https://datamed.org/js/client.min.js"></script>
+    </head>
+
+
+    <script>
+    $(window).load(function(){
+
+
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) {
+                return parts.pop().split(";").shift();
+            }else{
+                return false;
+            }
+        }
+
+        if(getCookie('survey')==false) {
+            $("#feedback-alert").removeClass('hidden')
+            $("#hide").removeClass('hidden')
+            $("#feedback-alert").show();
+            $("#hide").show();
+
+            $("#hide").click(function () {
+                $("#feedback-alert").hide();
+                $("#hide").html('Take the survey');
+                document.cookie =  "survey = later;";
+                location.reload();
+            });
+        }else if(getCookie('survey')=="later")
+        {
+            $("#hide").show();
+            $("#feedback-alert").hide();
+            $("#hide").html('Take the survey');
+            $("#hide").click(function(){
+                window.open("questionnaire.php","_blank");
+            });
+        }else if(getCookie('survey')=="no"){
+            $("#feedback-alert").hide();
+            $("#hide").hide();
+        }
+
+        $("#close").click(function(){
+            $("#feedback-alert").hide();
+            $("#hide").hide();
+            document.cookie =  "survey = no;";
+            location.reload();
+        });
+    });
+</script>
+
+<div class="alert alert-info" style="margin-bottom: 0px; border: none;padding-left: 50px;padding-right: 50px; text-align: center;">
+    <i><strong>Attention: </strong></i>This is a mockup of a dataset search results page on <a href="https://datamed.org/">DataMed v2.0</a>.
+    It has been edited to incorporate interfaces to browse Canned Analyses by adding two files: <a href="datasets2tools.js">datasets2tools.js</a> and <a href="datasets2tools.css">datasets2tools.css</a>.
+    <br>
+    A mockup for dataset search results page can be accessed <a href="datamed_search.html"> here</a>.
+    For more information, please visit the project's <a href="https://github.com/denis-torre/datasets2tools-datamed">GitHub page</a>.
+</div>
+
+<body>
+<div class="container">
+    <div class="row" style="padding: 5px 0">
+        <div class="col-sm-2">
+            <div class="hidden-xs">
+                <a href="https://datamed.org/index.php">
+                    <img src="https://datamed.org/img/biocaddie_png2.png" alt="Mountain View" class="header-logo" style="height: 50px">
+                </a>
+            </div>
+            <div class="visible-xs text-center" style="margin-bottom: 10px;">
+                <a href="https://datamed.org/index.php">
+                    <img src="https://datamed.org/img/biocaddie_png2.png" alt="DataMed BioCaddie Logo" class="header-logo"
+                         style="height: 50px">
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="hidden-xs text-right">
+                <div style="margin-right: 10px; line-height: 50px; display: inline;">
+                    <span style="font-size: 14px;"><span style="color: #2CA02C">bio</span>medical and health<span
+                            style="color: #2CA02C">CA</span>re <span style="color: #2CA02C">D</span>ata <span
+                            style="color: #2CA02C">D</span>iscovery <span style="color: #2CA02C">I</span>ndex <span
+                            style="color: #2CA02C">E</span>cosystem</span>
+                </div>
+                <div style="display: inline;">
+                    <a href="https://biocaddie.org" target="_blank">
+                        <img src="https://datamed.org/img/biocaddie-logo-transparent.png" alt="Mountain View"
+                             class="header-tag pull-right" style="height: 50px;">
+                    </a>
+                </div>
+            </div>
+            <div class="visible-xs text-center">
+                <div style="margin-bottom: 10px;">
+                    <a href="https://biocaddie.org" target="_blank">
+                        <img src="https://datamed.org/img/biocaddie-logo-transparent.png" alt="Mountain View" class="header-tag"
+                             style="height: 50px;">
+                    </a>
+                </div>
+                <div>
+                    <span style="font-size: 14px;"><span style="color: #2CA02C">bio</span>medical and health<span
+                            style="color: #2CA02C">CA</span>re <span style="color: #2CA02C">D</span>ata <span
+                            style="color: #2CA02C">D</span>iscovery <span style="color: #2CA02C">I</span>ndex <span
+                            style="color: #2CA02C">E</span>cosystem</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header clearfix">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                                    <li role="presentation" class="active"><a href="https://datamed.org/index.php">Home</a></li>
+                                <li role="presentation" class="active"><a href="https://datamed.org/about.php">About</a></li>
+                <!--<li role="presentation" class="active"><a href="https://biocaddie.org/contact" target='_blank'>Contact</a></li>-->
+
+                <li class="active">
+
+                    <a href="https://datamed.org/feedback.php" class="dropdown-toggle dropdown" role="presentation" aria-haspopup="true"
+                       aria-expanded="false">
+                        Feedback<span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown">
+                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle"
+                                                                 data-toggle="dropdown">Report an issue</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://github.com/biocaddie/prototype_issues/issues" target="_blank">GitHub</a>
+                                </li>
+                                <li><a href="https://datamed.org/about.php">Contact Us</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="https://datamed.org/questionnaire.php">Questionnaire</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="https://datamed.org/submit_repository.php"><span data-toggle="tooltip" data-placement="bottom"
+                                                                           title="Get your repository indexed">Submit<span></span></a>
+                </li>
+                                    <li role="presentation" class="active"><a href="https://datamed.org/login.php" id="partial_login_a">Login</a></li>
+                            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">   
+    <div class="row">
+        <div class="col-lg-12">
+                <div class="jumbotron search-block-2">
+        <form id="search-form" action='search.php' method='get' autocomplete='off' style="margin: 0">
+            <div class="input-group">
+                <input value="mcf7" type="text" class="form-control" placeholder="Search for data through BioCADDIE" name='query' id='query-other'>
+                                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-warning" type='submit' value=''>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+            <div class="form-inline" style="padding: 7px 0;">
+                <label class="radio-inline">
+                    <input  name="searchtype" id="radio1" value="data" type="radio" checked>
+                    <span class="search-text-md" style="line-height: 21px;">Search for data set</span>
+                </label>
+                <label class="radio-inline">
+                    <input name="searchtype" id="radio2" value="repository" type="radio" unchecked>
+                    <span class="search-text-md" style="line-height: 21px;">Search for repository</span>
+                </label>
+
+                <a href="https://datamed.org/help.php" class="hyperlink pull-right" style="font-size: 12px">help</a>
+                <a href="https://datamed.org/advanced.php" class="hyperlink pull-right" style="font-size: 12px;margin-right: 10px">Advanced Search</a>
+            </div>
+           <!-- <div id="search-example" class="search-text-sm">
+                <strong>Search Examples:</strong> (Breast Cancer, Genetic Analysis Software, Gene EGFR, Lung[title] AND Cancer, Cancer AND (Lung[Title] OR Skin[Title]))
+            </div>-->
+
+        </form>
+    </div>
+            </div>
+
+        <div class="col-lg-12">
+            
+            <ol class="breadcrumb dynamic-crumbs">
+                <li><a class="hyperlink" style="font-weight: bold" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&repository=0003" id="crumb0"> << Go Back</a></li>
+            </ol>
+            </div>
+
+        <div class="col-lg-9">
+                <div class="dataset-info">
+        <div class="heading">
+            <div>
+                <span  class="title">
+                    <img style="height: 50px" src="https://datamed.org/img/repositories/0003.png">
+                </span>
+
+            </div>
+
+            <table class="table table-default">
+                <tbody>
+                <tr>
+                    <td style="width: 20%;"><strong>Title:</strong></td>
+                    <td><strong>microRNA-221/222 knockdown effect on fulvestrant-resistant MCF7 breast cancer cells</strong>
+                                                         <a class="hyperlink" target="_blank" href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS4054">&nbsp;&nbsp;&nbsp;<img style="height: 20px ;width:60px" src="https://datamed.org/img/repositories/0003.png"></a>
+                           
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+                            <div class="panel-group" id="accordion-dataset" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-dataset">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-dataset' data-target="#collapse-dataset-dataset"
+                           href="#collapse-dataset-dataset"
+                           aria-expanded="true" aria-controls="collapse-dataset-dataset">
+                            <i class="fa fa-chevron-up"></i>
+                            Dataset                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-dataset" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-dataset">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>dateReleased:</strong></td>
+                                                                            <td><div class="comment more"> 06-05-2012</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>description:</strong></td>
+                                                                            <td><div class="comment more"> Analysis of fulvestrant-resistant MCF7 cells transfected with antisense miRNA inhibitors targeting miR-221 and miR-222. miR-221/222 knockdown inhibits cell proliferation in fulvestrant-resistant MCF7-F cells. Results provide insight into the role of miR-221/222 in acquired resistance to fulvestrant.</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>privacy:</strong></td>
+                                                                            <td><div class="comment more"> not applicable</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>aggregation:</strong></td>
+                                                                            <td><div class="comment more"> instance of dataset</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td><div class="comment more"> GSE19777</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>refinement:</strong></td>
+                                                                            <td><div class="comment more"> curated</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>alternateIdentifiers:</strong></td>
+                                                                            <td><div class="comment more"> GDS4054</div></td>
+                                                                    </tr>
+                                                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>availability:</strong></td>
+                                                                            <td><div class="comment more"> available</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>types:</strong></td>
+                                                                            <td><div class="comment more"> Expression profiling by array</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                            <div class="panel-group" id="accordion-taxonomicInformation" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-taxonomicInformation">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-taxonomicInformation' data-target="#collapse-dataset-taxonomicInformation"
+                           href="#collapse-dataset-taxonomicInformation"
+                           aria-expanded="true" aria-controls="collapse-dataset-taxonomicInformation">
+                            <i class="fa fa-chevron-up"></i>
+                            Taxonomic Information                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-taxonomicInformation" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-taxonomicInformation">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>name:</strong></td>
+                                                                            <td><div class="comment more"> Homo sapiens</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>name:</strong></td>
+                                                                            <td><div class="comment more"> Homo sapiens</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                                                    <div class="panel-group" id="accordion-access" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-access">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-access' data-target="#collapse-dataset-access"
+                           href="#collapse-dataset-access"
+                           aria-expanded="true" aria-controls="collapse-dataset-access">
+                            <i class="fa fa-chevron-up"></i>
+                            Access                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-access" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-access">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>landingPage:</strong></td>
+                                                                            <td> <a class='hyperlink' target="_blank" href="http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS4054">http://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS4054</a></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                                        <div class="panel-group" id="accordion-primaryPublication" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-primaryPublication">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-primaryPublication' data-target="#collapse-dataset-primaryPublication"
+                           href="#collapse-dataset-primaryPublication"
+                           aria-expanded="true" aria-controls="collapse-dataset-primaryPublication">
+                            <i class="fa fa-chevron-up"></i>
+                            Primary Publication                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-primaryPublication" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-primaryPublication">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td> <a class='hyperlink' target="_blank" href="https://www.ncbi.nlm.nih.gov/pubmed/21057537">pmid:21057537</a></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                                                                                                                                                                                        <div class="panel-group" id="accordion-instrument" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-instrument">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-instrument' data-target="#collapse-dataset-instrument"
+                           href="#collapse-dataset-instrument"
+                           aria-expanded="true" aria-controls="collapse-dataset-instrument">
+                            <i class="fa fa-chevron-up"></i>
+                            Instrument                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-instrument" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-instrument">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>name:</strong></td>
+                                                                            <td><div class="comment more"> GPL570</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="panel-group" id="accordion-citation" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-citation">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-citation' data-target="#collapse-dataset-citation"
+                           href="#collapse-dataset-citation"
+                           aria-expanded="true" aria-controls="collapse-dataset-citation">
+                            <i class="fa fa-chevron-up"></i>
+                            Citation                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-citation" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-citation">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>count:</strong></td>
+                                                                            <td><div class="comment more"> 0</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                            <div class="panel-group" id="accordion-study" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-study">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-study' data-target="#collapse-dataset-study"
+                           href="#collapse-dataset-study"
+                           aria-expanded="true" aria-controls="collapse-dataset-study">
+                            <i class="fa fa-chevron-up"></i>
+                            Study                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-study" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-study">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td><div class="comment more"> GSM493924<br>GSM493925<br>GSM493926</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                            <div class="panel-group" id="accordion-identifiers" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-identifiers">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-identifiers' data-target="#collapse-dataset-identifiers"
+                           href="#collapse-dataset-identifiers"
+                           aria-expanded="true" aria-controls="collapse-dataset-identifiers">
+                            <i class="fa fa-chevron-up"></i>
+                            Identifiers                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-identifiers" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-identifiers">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td><div class="comment more"> GEO:GSE19777</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                                                                                                                <div class="panel-group" id="accordion-organization" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-organization">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-organization' data-target="#collapse-dataset-organization"
+                           href="#collapse-dataset-organization"
+                           aria-expanded="true" aria-controls="collapse-dataset-organization">
+                            <i class="fa fa-chevron-up"></i>
+                            Organization                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-organization" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-organization">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>abbreviation:</strong></td>
+                                                                            <td><div class="comment more"> NCBI</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>homePage:</strong></td>
+                                                                            <td> <a class='hyperlink' target="_blank" href="http://www.ncbi.nih.gov/">http://www.ncbi.nih.gov/</a></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td><div class="comment more"> SCR:006472</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>name:</strong></td>
+                                                                            <td><div class="comment more"> National Center for Biotechnology Information</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+                            <div class="panel-group" id="accordion-dataRepository" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="heading-dataset-dataRepository">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent = '#accordion-dataRepository' data-target="#collapse-dataset-dataRepository"
+                           href="#collapse-dataset-dataRepository"
+                           aria-expanded="true" aria-controls="collapse-dataset-dataRepository">
+                            <i class="fa fa-chevron-up"></i>
+                            Data Repository                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse-dataset-dataRepository" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="heading-dataset-dataRepository">
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>abbreviation:</strong></td>
+                                                                            <td><div class="comment more"> GEO</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>homePage:</strong></td>
+                                                                            <td> <a class='hyperlink' target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/">http://www.ncbi.nlm.nih.gov/geo/</a></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>ID:</strong></td>
+                                                                            <td><div class="comment more"> SCR:007303</div></td>
+                                                                    </tr>
+                                                                                            <tr>
+                                    <td style="width: 20%;"><strong>name:</strong></td>
+                                                                            <td><div class="comment more"> Gene Expression Omnibus</div></td>
+                                                                    </tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+            </div>
+
+
+            </div>
+
+        <div class="col-lg-3">            
+                    <div class="panel panel-danger" id="similar-datasets">
+            <div class="panel-heading"><i class="fa fa-chevron-up"></i> <strong>Similar Datasets</strong></div>
+            <div class="panel-body">
+                <div class="table-responsive ">
+                    <div class="list-group">
+                                            </div>
+                </div>
+            </div>
+        </div>
+                                        <div id="support-grant" class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-chevron-up"></i><a class="hyperlink" user="result-heading" href="grant_details.php?pmid=21057537">Grant Support</a></h3>
+            </div>
+            <div class="panel-body">
+                <ul class="no-disk">
+                                            <li class="list-group-item-text">R01 CA085289/CA/NCI NIH HHS/United States</li><br>
+                                            <li class="list-group-item-text">CA125806/CA/NCI NIH HHS/United States</li><br>
+                                            <li class="list-group-item-text">U54 CA113001/CA/NCI NIH HHS/United States</li><br>
+                                    </ul>
+            </div>
+        </div>
+                    <div class="bs-callout bs-callout-primary" id="feedback">
+        <a href="https://datamed.org/feedback.php" target="_blank"><h4>Feedback?</h4></a>
+        <p>
+            If you are having problems using our tools, or if you would just like 
+            to send us some feedback, please post your questions on <a target="_blank" class="hyperlink" href="https://github.com/biocaddie/prototype_issues/issues"><strong>GitHub</strong></a>.
+        </p>
+    </div>
+            </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <p class="muted text-center blackgray add_padding">bioCADDIE is supported by the
+            <a href="http://grants.nih.gov/grants/guide/rfa-files/RFA-HL-14-031.html" target="_blank" class="white hyperlink">National Institutes of Health</a>
+            through the Big Data to Knowledge, Grant 1U24AI117966-01. 
+            <a href="http://www.nih.gov/" target="_blank" class="white hyperlink">NIH | </a>
+            <a href="http://www.ucsd.edu/" target="_blank" class="white hyperlink">UCSD | </a>
+            <a href="http://healthsciences.ucsd.edu/som/medicine/divisions/dbmi/pages/default.aspx" target="_blank" class="white hyperlink">DBMI</a>
+        </p>
+        <p class="muted text-center blackgray add_padding">For more information about bioCADDIE, please visit<a href="https://biocaddie.org" target="_blank" class="white hyperlink"> bioCADDIE</a></p>
+    </div>
+</div>
+
+<!--Datasets2Tools-->
+<script src="datasets2tools.js"></script>
+<link rel="stylesheet" type="text/css" href="datasets2tools.css">
+
+</body>
+
+</html>

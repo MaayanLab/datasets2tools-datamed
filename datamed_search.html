@@ -1,0 +1,1505 @@
+<!--Word Cloud-->
+<!-- Modal -->
+<div class="modal fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="surveyModalLabel">Survey</h4>
+      </div>
+      <div class="modal-body">
+        Would you like to take a survey to help us improve DataMed?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" onclick="window.open('https://datamed.org/questionnaire.php')">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <title>mcf7 |  bioCADDIE Data Discovery Index</title>
+        <meta name="description" content="DataMed is a prototype biomedical data search engine. Its goal is to discover data sets across data repositories or data aggregators. In the future it will allow searching outside these boundaries. DataMed supports the NIH-endorsed FAIR principles of Findability, Accessibility, Interoperability and Reusability of datasets with current functionality assisting in finding datasets and providing access information about them.">
+        <meta name="author" content="bioCaddie Core Development Team.">
+        <meta name="keywords" content="DataMed,
+                                        biomedical data search engine,
+                                        biomedical data,
+                                        Healthcare data,
+                                        data discovery index,
+                                        bioCADDIE,
+                                        biomedical and healthcare data discovery index ecosystem,
+                                        NIH,
+                                        National Institutes of Health,
+                                        BD2K,
+                                        Big Data to Knowledge,
+                                        data repository,
+                                        data aggregator,
+                                        FAIR,
+                                        Findability,
+                                        Accessibility,
+                                        Interoperability,
+                                        Reusability,
+                                        dataset,
+                                        data set,
+                                        metadata,
+                                        DATS,
+                                        Data Tag Suite,
+                                        citation,
+                                        publication
+                                        ">
+
+        <link href="https://datamed.org/img/favicon.png" rel="icon" >
+
+        <!-- Styles -->
+        <link href="https://datamed.org/vendor/jquery/jquery-ui.css" rel="stylesheet" type="text/css">
+        <link href="https://datamed.org/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://datamed.org/vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://datamed.org/css/theme.css" rel="stylesheet">
+        <link href="https://datamed.org/css/expand.css" rel="stylesheet">
+
+
+        <!-- Scripts -->
+
+       <!-- <script src="https://datamed.org/vendor/bootstrap/js/bootstrap.min.js"></script>-->
+        <script src="https://d3js.org/d3-format.v1.min.js"></script>
+
+        <script src="https://datamed.org/vendor/jquery/jquery-1.11.3.min.js"></script>
+        <script src="https://datamed.org/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
+        <script src="https://datamed.org/vendor/d3/d3.v3.min.js"></script>
+        <script src="https://datamed.org/js/jsapi.js"></script>
+
+        <!--[if lt IE 9]>
+        <script src="https://datamed.org/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://datamed.org/js/html5shiv.min.js"></script>
+        <script src="https://datamed.org/js/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="https://datamed.org/js/js.cookie.js"></script>
+
+        <!---For sign in using Google account-->
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="829717013649-0j7el8re8ka2d5tgqm87c5msek06kgmu.apps.googleusercontent.com">
+        <script src="https://datamed.org/js/platform.js" async defer></script>
+        <script type="text/javascript" src="https://datamed.org/js/loadingoverlay.min.js"></script>
+        <script type="text/javascript" src="https://datamed.org/js/global.scripts.js"></script>
+
+
+        <script src="https://datamed.org/vendor/d3/d3.layout.cloud.js"></script>
+        <script src="https://datamed.org/vendor/d3/d3-tip.js"></script>
+
+        <!--Usability Tracking-->
+        <script src="https://datamed.org/js/client.min.js"></script>
+    </head>
+
+
+    <script>
+    $(window).load(function(){
+
+
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) {
+                return parts.pop().split(";").shift();
+            }else{
+                return false;
+            }
+        }
+
+        if(getCookie('survey')==false) {
+            $("#feedback-alert").removeClass('hidden')
+            $("#hide").removeClass('hidden')
+            $("#feedback-alert").show();
+            $("#hide").show();
+
+            $("#hide").click(function () {
+                $("#feedback-alert").hide();
+                $("#hide").html('Take the survey');
+                document.cookie =  "survey = later;";
+                location.reload();
+            });
+        }else if(getCookie('survey')=="later")
+        {
+            $("#hide").show();
+            $("#feedback-alert").hide();
+            $("#hide").html('Take the survey');
+            $("#hide").click(function(){
+                window.open("questionnaire.php","_blank");
+            });
+        }else if(getCookie('survey')=="no"){
+            $("#feedback-alert").hide();
+            $("#hide").hide();
+        }
+
+        $("#close").click(function(){
+            $("#feedback-alert").hide();
+            $("#hide").hide();
+            document.cookie =  "survey = no;";
+            location.reload();
+        });
+    });
+</script>
+
+<div class="alert alert-info" style="margin-bottom: 0px; border: none;padding-left: 50px;padding-right: 50px; text-align: center;">
+    <i><strong>Attention: </strong></i>This is a mockup of a dataset search results page on <a href="https://datamed.org/">DataMed v2.0</a>.
+    It has been edited to incorporate interfaces to browse Canned Analyses by adding two files: <a href="datasets2tools.js">datasets2tools.js</a> and <a href="datasets2tools.css">datasets2tools.css</a>.
+    <br>
+    A mockup for a dataset landing page can be accessed <a href="datamed_landing.html"> here</a>.
+    For more information, please visit the project's <a href="https://github.com/denis-torre/datasets2tools-datamed">GitHub page</a>.
+</div>
+
+<body>
+<div class="container">
+    <div class="row" style="padding: 5px 0">
+        <div class="col-sm-2">
+            <div class="hidden-xs">
+                <a href="https://datamed.org/index.php">
+                    <img src="https://datamed.org/img/biocaddie_png2.png" alt="Mountain View" class="header-logo" style="height: 50px">
+                </a>
+            </div>
+            <div class="visible-xs text-center" style="margin-bottom: 10px;">
+                <a href="https://datamed.org/index.php">
+                    <img src="https://datamed.org/img/biocaddie_png2.png" alt="DataMed BioCaddie Logo" class="header-logo"
+                         style="height: 50px">
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="hidden-xs text-right">
+                <div style="margin-right: 10px; line-height: 50px; display: inline;">
+                    <span style="font-size: 14px;"><span style="color: #2CA02C">bio</span>medical and health<span
+                            style="color: #2CA02C">CA</span>re <span style="color: #2CA02C">D</span>ata <span
+                            style="color: #2CA02C">D</span>iscovery <span style="color: #2CA02C">I</span>ndex <span
+                            style="color: #2CA02C">E</span>cosystem</span>
+                </div>
+                <div style="display: inline;">
+                    <a href="https://biocaddie.org" target="_blank">
+                        <img src="https://datamed.org/img/biocaddie-logo-transparent.png" alt="Mountain View"
+                             class="header-tag pull-right" style="height: 50px;">
+                    </a>
+                </div>
+            </div>
+            <div class="visible-xs text-center">
+                <div style="margin-bottom: 10px;">
+                    <a href="https://biocaddie.org" target="_blank">
+                        <img src="https://datamed.org/img/biocaddie-logo-transparent.png" alt="Mountain View" class="header-tag"
+                             style="height: 50px;">
+                    </a>
+                </div>
+                <div>
+                    <span style="font-size: 14px;"><span style="color: #2CA02C">bio</span>medical and health<span
+                            style="color: #2CA02C">CA</span>re <span style="color: #2CA02C">D</span>ata <span
+                            style="color: #2CA02C">D</span>iscovery <span style="color: #2CA02C">I</span>ndex <span
+                            style="color: #2CA02C">E</span>cosystem</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header clearfix">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                                    <li role="presentation" class="active"><a href="https://datamed.org/index.php">Home</a></li>
+                                <li role="presentation" class="active"><a href="https://datamed.org/about.php">About</a></li>
+                <!--<li role="presentation" class="active"><a href="https://biocaddie.org/contact" target='_blank'>Contact</a></li>-->
+
+                <li class="active">
+
+                    <a href="https://datamed.org/feedback.php" class="dropdown-toggle dropdown" role="presentation" aria-haspopup="true"
+                       aria-expanded="false">
+                        Feedback<span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown">
+                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle"
+                                                                 data-toggle="dropdown">Report an issue</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://github.com/biocaddie/prototype_issues/issues" target="_blank">GitHub</a>
+                                </li>
+                                <li><a href="https://datamed.org/about.php">Contact Us</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="https://datamed.org/questionnaire.php">Questionnaire</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="https://datamed.org/submit_repository.php"><span data-toggle="tooltip" data-placement="bottom"
+                                                                           title="Get your repository indexed">Submit<span></span></a>
+                </li>
+                                    <li role="presentation" class="active"><a href="https://datamed.org/login.php" id="partial_login_a">Login</a></li>
+                            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+        <div class="jumbotron search-block-2">
+        <form id="search-form" action='search.php' method='get' autocomplete='off' style="margin: 0">
+            <div class="input-group">
+                <input value="mcf7" type="text" class="form-control" placeholder="Search for data through BioCADDIE" name='query' id='query-other'>
+                                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-warning" type='submit' value=''>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+            <div class="form-inline" style="padding: 7px 0;">
+                <label class="radio-inline">
+                    <input  name="searchtype" id="radio1" value="data" type="radio" checked>
+                    <span class="search-text-md" style="line-height: 21px;">Search for data set</span>
+                </label>
+                <label class="radio-inline">
+                    <input name="searchtype" id="radio2" value="repository" type="radio" unchecked>
+                    <span class="search-text-md" style="line-height: 21px;">Search for repository</span>
+                </label>
+
+                <a href="https://datamed.org/help.php" class="hyperlink pull-right" style="font-size: 12px">help</a>
+                <a href="https://datamed.org/advanced.php" class="hyperlink pull-right" style="font-size: 12px;margin-right: 10px">Advanced Search</a>
+            </div>
+           <!-- <div id="search-example" class="search-text-sm">
+                <strong>Search Examples:</strong> (Breast Cancer, Genetic Analysis Software, Gene EGFR, Lung[title] AND Cancer, Cancer AND (Lung[Title] OR Skin[Title]))
+            </div>-->
+
+        </form>
+    </div>
+                <div class="row">
+
+        <div class="col-sm-12">
+
+            <ol class="breadcrumb dynamic-crumbs">
+                <li><a href="https://datamed.org/search.php?query=mcf7&searchtype=data" id="crumb0">mcf7</a></li>
+                <li><a href="https://datamed.org/search.php?query=mcf7&searchtype=data&offset=1&repository=0003" id="crumb1">GEO</a></li>            </ol>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <!-- Filter Panel -->
+        <div class="col-sm-4 col-md-3">
+            
+                <iframe scrolling="no"  style="width: 268px;height: 2000px; border: none;margin-bottom: 30px" src=""></iframe>
+                    </div>
+
+        <!--  Search Result Panel -->
+        <div id="detailView"></div>
+        <div id="summaryView">
+            <div class="col-sm-8 col-md-6">
+               <!-- Pagination Panel -->
+                                        <div class="pull-left" style="margin-right: 10px">
+        <span>Displaying 19</span>
+        <span>of 19</span>
+        <span>results for "<strong>mcf7"</strong></span>
+    </div>
+
+
+    <!-- Select number of results per page-->
+    <div class="pull-left">
+        <div class="dropdown">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdown-sort"
+                    data-toggle="dropdown">
+                20 Per Page
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=5&repository=0003&sort=relevance&sort=relevance" >5</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=10&repository=0003&sort=relevance&sort=relevance" >10</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance&sort=relevance" style="background-color: #D8D7D7;">20</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=50&repository=0003&sort=relevance&sort=relevance" >50</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=100&repository=0003&sort=relevance&sort=relevance" >100</a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+                                    <div class="pull-right" style="margin-left: 10px">
+            <span>Switch View:</span>
+            <span data-toggle="tooltip" data-placement="top" title="Switch to summary View">
+                <span class="fa fa-bars switchview activeView" id="btn-summary"></span>
+            </span>
+            <span data-toggle="tooltip" data-placement="top" title="Switch to detail View">
+                <a href="https://datamed.org/search-repository.php?query=mcf7&searchtype=data&repository=0003">
+                    <span class="fa fa-table switchview" id="btn-detail"
+                          onclick="switchView('0003')"></span>
+                </a>
+            </span>
+        </div>
+                        <div class="clearfix"></div>
+                        <div class="pull-left">
+        <ul id="search-pagination" class="pagination">
+            <li>
+                <a id="page_First" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance" aria-label="Previous">
+                    <span aria-hidden="true">First</span>
+                </a>
+            </li>
+            <li>
+                <a id="page_Previous" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+                            <li class="active">
+                    <a id="page_1" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance">1</a>
+                </li>
+                        <li>
+                <a id="page_Next" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li>
+                <a id="page_Last" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Next">
+                    <span aria-hidden="true">Last</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+                        <div class="pull-right" style="margin: 10px 0 0 5px;">
+                                             
+    <iframe id="download_xls" name="download_xls" width="0" height="0" scrolling="no" frameborder="0" hidden="hidden" ></iframe>
+    <div data-toggle="tooltip" data-placement="left" title="Share Results.">
+        <button id="share-btn" type="button" class="btn btn-default btn-sm" style="border-radius: 2px; padding: 3px 5px;" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-share-alt" style="margin-right: 5px;"></i>
+            <span name="share-qty" class="badge" style="font-size: 10px;"></span>
+            Send To
+        </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" style="max-width: 450px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 lass="modal-title" id="myModalLabel">
+                        <i class="fa fa-share-alt" style="margin-right: 5px;"></i>
+                        Share Search Results
+                    </h4>
+                </div>
+                <form name="share-form" id="share-form" action="share.php?searchtype=data&query=mcf7&offset=1&repository=0003" method="post" target="download_xls">
+                    <input type="hidden" name="query" value="mcf7" />
+                    <div class="modal-body">
+                        <p id="lbl-share-all">You haven't selected any dataset. So all of the results for this query will be exported.</p>
+                        <p id="lbl-share-some">You haven selected few datasets to export.</p>
+                        <p><strong>How do you prefer to share them?</strong></p>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default btn-sm active">
+                                <input type="radio" name="radio-share" value="file" id="radio-share-file" onchange="shareToggler(false);" autocomplete="off" checked=""> 
+                                <i class="fa fa-file" style="margin-right: 5px;"></i>File
+                            </label>
+                            <label class="btn btn-default btn-sm">
+                                <input type="radio" name="radio-share" value="email" id="radio-share-email" onchange="shareToggler(true);" autocomplete="off"> 
+                                <i class="fa fa-envelope" style="margin-right: 5px;"></i>E-Mail
+                            </label>
+                            <label id="collection-share" class="btn btn-default btn-sm">
+                                <input type="radio" name="radio-share" value="collections" id="radio-share-collections" onchange="shareToggler(false);" autocomplete="off">
+                                <i class="fa fa-database" style="margin-right: 5px;"></i>Collections
+                            </label>
+                            <label class="btn btn-default btn-sm">
+                                <input type="radio" name="radio-share" value="citation" id="radio-share-citation" onchange="shareToggler(false);" autocomplete="off">
+                                <i class="fa fa-book" style="margin-right: 5px;"></i>Citation Manager
+                            </label>
+                        </div>
+
+                        <div class="option">                            
+                            <p class="hidden" style="margin: 5px 0"><strong>File Format:</strong></p>
+                            <div id="file-format" class="btn-group hidden" data-toggle="buttons">
+                                <label class="btn btn-default btn-xs">
+                                    <input type="radio" name="radio-file-format" value="summary" id="radio-file-format-summary" autocomplete="off"> 
+                                    Summary (Text)
+                                </label>                                
+                                <label class="btn btn-default btn-xs">
+                                    <input type="radio" name="radio-file-format" value="json" id="radio-file-format-json" autocomplete="off"> 
+                                    JSON
+                                </label>
+                                <label class="btn btn-default btn-xs">
+                                    <input type="radio" name="radio-file-format" value="csv" id="radio-file-format-csv" autocomplete="off"> 
+                                    CSV
+                                </label>
+                            </div>
+
+                            <div id="emailOption" class="chidden">
+                                <hr style="margin: 10px 0">
+                                <div class="form-group">
+                                    <label for="EmailAddress">Email Address:</label>
+                                    <input type="email" class="form-control input-sm" id="EmailAddress" name="EmailAddress" placeholder="Your Email Address...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="EmailSubject">Subject:</label>
+                                    <input type="text" class="form-control input-sm" id="EmailSubject" name="EmailSubject" placeholder="Prefered Email Subject..." value="bioCaddie Exported Data">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 0">
+                                    <label for="EmailBody">Extra Comment:</label>
+                                    <textarea id="EmailComment" name="EmailBody" class="form-control input-sm" rows="3" placeholder="Notes You May Want To Add To The Email Body...">bioCaddie data extracted for "mcf7".</textarea>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="share-clear">
+                            <i class="fa fa-trash"></i>
+                            Clear Selected Items
+                        </button>
+                        
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                            <i class="fa fa-remove"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-check"></i>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                                        </div>
+                    <div class="clearfix"></div>
+                    <div style="margin-bottom: 60px">
+                    
+    <div class="pull-left" >
+        <span>Sorted By:</span>
+        <div class="dropdown">
+            <button class="btn btn-default btn-xs dropdown-toggle" id="dropdown-sort" data-toggle="dropdown">
+                Relevance                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&repository=0003&sort=relevance" class="active"                       title="Sort based on relevance to the search keyword.">Relevance</a>
+                </li>
+                <!--<li>
+                    <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&repository=0003&sort=title"                        title="Order By Article Title.">Title</a>
+                </li>
+                <li>
+                    <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&repository=0003&sort=date"                        title="Order By Article Date.">Date</a>
+                </li>
+                <li>
+                                            <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&repository=0003&sort=citations"                            title="Order By Citation Count.">Citations</a>
+                                    </li>-->
+            </ul>
+        </div>
+    </div>
+                            </div>
+                
+                <div class="clearfix"></div>
+
+                <!-- Search Result List -->
+                        <ol class="search-result" id="search-result">
+                            <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5815152c60c61e09062"/>
+                        <!--title-->
+                        <a id="result_589ce5815152c60c61e09062" href="https://datamed.org/display-item.php?repository=0003&id=589ce5815152c60c61e09062&query=mcf7">
+                            microRNA-221/222 knockdown effect on fulvestrant-resistant <strong>MCF7</strong> breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE19777                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of fulvestrant-resistant MCF7 cells transfected with antisense miRNA inhibitors targeting miR-221 and miR-222. miR-221/222 knockdown inhibits cell proliferation in fulvestrant-resistant MCF7-F cells. Results provide insight into the role of miR-221/222 in acquired resistance to fulvestrant."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of fulvestrant-resistant <strong>MCF7</strong> cells transfected with antisense miRNA inhibitors targeting miR-221 and miR-222. miR-221/222 k...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce69b5152c60c61e092df"/>
+                        <!--title-->
+                        <a id="result_589ce69b5152c60c61e092df" href="https://datamed.org/display-item.php?repository=0003&id=589ce69b5152c60c61e092df&query=mcf7">
+                            Effect of estrogen receptor- or retinoic acid receptor-knockdown on estrogen-sensitive <strong>MCF7</strong> breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE26298                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 cells transfected with control siRNA, estrogen receptor α (ER) siRNA or retinoic acid receptor α (RARα) siRNA. Basal proliferation of MCF7 cells was diminished by knocking down ER or RARα. Results provided insight into the molecular basis of basal proliferation."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> cells transfected with control siRNA, estrogen receptor α (ER) siRNA or retinoic acid receptor α (RARα) siRNA. Ba...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce58d5152c60c61e09081"/>
+                        <!--title-->
+                        <a id="result_589ce58d5152c60c61e09081" href="https://datamed.org/display-item.php?repository=0003&id=589ce58d5152c60c61e09081&query=mcf7">
+                            Proteasome inhibitor Bortezomib effect on <strong>MCF7</strong> breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE30931                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 cells stimulated with bortezomib (velcade). Proteasome inhibition can regulate estrogen-induced transcription. Results provide insight into the mechanisms by which proteasome inhibition influences ERα function and may uncover improved strategies for the treatment of breast cancer."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> cells stimulated with bortezomib (velcade). Proteasome inhibition can regulate estrogen-induced transcription. Resul...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL10558                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce6aa5152c60c61e09301"/>
+                        <!--title-->
+                        <a id="result_589ce6aa5152c60c61e09301" href="https://datamed.org/display-item.php?repository=0003&id=589ce6aa5152c60c61e09301&query=mcf7">
+                            Proteasome inhibitor Bortezomib or proteasome subunit knockdown effect on <strong>MCF7</strong> breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE31118                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 cells stimulated with bortezomib or depleted of PSMB3 or PSMB5. Proteasome inhibition can regulate estrogen-induced transcription. Results provide insight into mechanisms by which proteasome inhibition influences ERα function and into improved strategies for breast cancer treatment"
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> cells stimulated with bortezomib or depleted of PSMB3 or PSMB5. Proteasome inhibition can regulate estrogen-induced ...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL14010                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce9135152c60c61e09aea"/>
+                        <!--title-->
+                        <a id="result_589ce9135152c60c61e09aea" href="https://datamed.org/display-item.php?repository=0003&id=589ce9135152c60c61e09aea&query=mcf7">
+                            Estradiol effect on <strong>MCF7</strong> breast cancer cells expressing progesterone receptor-B                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE45643                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of estradiol-treated, progesterone receptor (PR)-low/estrogen receptor (ER)+ MCF7 breast cancer cells stably-expressing PR-B. Progesterone and estrogen are major drivers of breast cancer. Results provide insight into the molecular cross-talk between ER and PR-B in breast cancer."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of estradiol-treated, progesterone receptor (PR)-low/estrogen receptor (ER)+ <strong>MCF7</strong> breast cancer cells stably-expressing PR-B...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL10558                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5bd5152c60c61e090f5"/>
+                        <!--title-->
+                        <a id="result_589ce5bd5152c60c61e090f5" href="https://datamed.org/display-item.php?repository=0003&id=589ce5bd5152c60c61e090f5&query=mcf7">
+                            Estrogen receptor alpha-silenced <strong>MCF7</strong> breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE27473                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 breast cancer cells after siRNA-mediated silencing of the estrogen receptor α (ERα). The induced ERα silencing resulted in estrogen/tamoxifen resistant cells (pII). Results provide insight into molecular events underlying the endocrine drug resistant phenotype in breast cancer."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> breast cancer cells after siRNA-mediated silencing of the estrogen receptor α (ERα). The induced ERα silencing re...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce6f45152c60c61e093cb"/>
+                        <!--title-->
+                        <a id="result_589ce6f45152c60c61e093cb" href="https://datamed.org/display-item.php?repository=0003&id=589ce6f45152c60c61e093cb&query=mcf7">
+                            Argyrin A effect on <strong>MCF7</strong> breast cancer cells: time course                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE8565                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Temporal analysis of MCF7 breast adenocarcinoma cells treated with argyrin A, a proteasome inhibitor that induces apoptosis by stabilizing cyclin kinase inhibitor p27kip1. Results provide insight into the molecular mechanisms that make argyrin A-induced cell death dependent upon p27kip1 expression."
+                                  data-toggle="tooltip" data-placement="right">
+                                Temporal analysis of <strong>MCF7</strong> breast adenocarcinoma cells treated with argyrin A, a proteasome inhibitor that induces apoptosis by stabil...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5605152c60c61e09023"/>
+                        <!--title-->
+                        <a id="result_589ce5605152c60c61e09023" href="https://datamed.org/display-item.php?repository=0003&id=589ce5605152c60c61e09023&query=mcf7">
+                            Zinc finger transcription factor induced fulvestrant resistant <strong>MCF7</strong>-R73 breast cancer cell lines                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE27444                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of fulvestrant-sensitive MCF7-R73 cells retrovirally induced with various zinc finger transcription factors. Six unique ZF-TFs conferred stable fulvestrant-resistance. Results provide insight into molecular mechanisms underlying acquired fulvestrant-resistance in breast cancer cells."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of fulvestrant-sensitive <strong>MCF7</strong>-R73 cells retrovirally induced with various zinc finger transcription factors. Six unique ZF-T...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5935152c60c61e0908e"/>
+                        <!--title-->
+                        <a id="result_589ce5935152c60c61e0908e" href="https://datamed.org/display-item.php?repository=0003&id=589ce5935152c60c61e0908e&query=mcf7">
+                            Leukemia inhibitory factor effect on Sin3a-silenced <strong>MCF7</strong> breast cancer cell line                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE35696                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of SIN3 transcription regulator homolog A (Sin3a)-depleted MCF7 cells stimulated with LIF cytokine to activate signal transducer and activator of transcription 3 (STAT3). STAT3 transcription factor is a potent oncogene. Results provide insight into role of Sin3a in mediating STAT3 activity."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of SIN3 transcription regulator homolog A (Sin3a)-depleted <strong>MCF7</strong> cells stimulated with LIF cytokine to activate signal transd...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce66a5152c60c61e09272"/>
+                        <!--title-->
+                        <a id="result_589ce66a5152c60c61e09272" href="https://datamed.org/display-item.php?repository=0003&id=589ce66a5152c60c61e09272&query=mcf7">
+                            Tamoxifen-resistant breast cancer cell line <strong>MCF7</strong> subclones                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE26459                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of tamoxifen-sensitive and -resistant subclones of breast tumor MCF7 cells treated with estrogen (E), 4-hydroxy-tamoxifen (4-OHT), or E + 4-OHT. Success of 4-OHT therapy is limited by intrinsic and acquired drug resistance. Results provide insight into mechanisms leading to drug resistance."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of tamoxifen-sensitive and -resistant subclones of breast tumor <strong>MCF7</strong> cells treated with estrogen (E), 4-hydroxy-tamoxifen (4...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce9f85152c60c61e09e76"/>
+                        <!--title-->
+                        <a id="result_589ce9f85152c60c61e09e76" href="https://datamed.org/display-item.php?repository=0003&id=589ce9f85152c60c61e09e76&query=mcf7">
+                            c-Myb and its oncogenic variant v-Myb                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE2815                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of transcriptional activity in MCF7 cells infected with control adenovirus versus adenovirus expressing c-Myb, oncogenic variant v-Myb, or a 3MutC hybrid construct. Results indicate that v-Myb is a distinct transcriptional regulator with a unique set of activities."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of transcriptional activity in <strong>MCF7</strong> cells infected with control adenovirus versus adenovirus expressing c-Myb, oncogenic var...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL96                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce9ef5152c60c61e09e48"/>
+                        <!--title-->
+                        <a id="result_589ce9ef5152c60c61e09e48" href="https://datamed.org/display-item.php?repository=0003&id=589ce9ef5152c60c61e09e48&query=mcf7">
+                            Estrogen-starved breast cancer cell line: time course                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE4668                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of breast cancer MCF7/BUS cells starved of estrogen for up to 2 days. Results compared to that from an experiment (GDS2324) examining the response to low concentrations of 17beta-estradiol (E2). Results provide insight into the E2 sensitivity of E2 inducible or suppressible genes."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of breast cancer <strong>MCF7</strong>/BUS cells starved of estrogen for up to 2 days. Results compared to that from an experiment (GDS2324) ...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL96                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce6d95152c60c61e09381"/>
+                        <!--title-->
+                        <a id="result_589ce6d95152c60c61e09381" href="https://datamed.org/display-item.php?repository=0003&id=589ce6d95152c60c61e09381&query=mcf7">
+                            Estradiol effect on breast cancer cell line expressing estrogen receptor: time course                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE11352                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of estrogen receptor (ER)-positive MCF7 breast cancer cells up to 48 hours following treatment with estradiol (E2). ERs facilitate the transcriptional effects of hormones. These results, together with ChIP-PET results, suggest potential correlations between ER binding and gene regulation."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of estrogen receptor (ER)-positive <strong>MCF7</strong> breast cancer cells up to 48 hours following treatment with estradiol (E2). ERs faci...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce9ef5152c60c61e09e47"/>
+                        <!--title-->
+                        <a id="result_589ce9ef5152c60c61e09e47" href="https://datamed.org/display-item.php?repository=0003&id=589ce9ef5152c60c61e09e47&query=mcf7">
+                            X-Box binding protein overexpression effect on breast cancer cell line                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE8562                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 breast cancer (BC) cells overexpressing spliced X-box binding protein-1 (XBP1), a transcription factor that participates in the unfolded protein response (UPR). Results provide insight into the role of XBP1 and the UPR in estrogen and antiestrogen responsiveness in breast cancer."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> breast cancer (BC) cells overexpressing spliced X-box binding protein-1 (XBP1), a transcription factor that particip...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL96                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5c65152c60c61e09109"/>
+                        <!--title-->
+                        <a id="result_589ce5c65152c60c61e09109" href="https://datamed.org/display-item.php?repository=0003&id=589ce5c65152c60c61e09109&query=mcf7">
+                            Trans-retinoic acid and hydrocortisone induction of Na+/I- symporter in MCF-7 breast cancer cells                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE32161                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 cells induced to express endogenous Na+/I- symporter (NIS). NIS expression raises potential for radionuclide therapy of breast cancer. However, NIS expression in most breast cancers is low. Results provide insight into mechanisms underlying NIS modulation in breast cancer."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> cells induced to express endogenous Na+/I- symporter (NIS). NIS expression raises potential for radionuclide therapy...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce68e5152c60c61e092c1"/>
+                        <!--title-->
+                        <a id="result_589ce68e5152c60c61e092c1" href="https://datamed.org/display-item.php?repository=0003&id=589ce68e5152c60c61e092c1&query=mcf7">
+                            Lysophosphatidic acid effect on breast and prostate cancer cell lines                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE56265                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MDA-MB-231, MCF7 and PC3 cells treated with lysophosphatidic acid (LPA). LPA activates six different G protein-coupled receptors (LPA receptors 1-6). Results provide insight into LPA-induced genes among three unrelated cancer cell lines expressing different patterns of LPA receptors."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of MDA-MB-231, <strong>MCF7</strong> and PC3 cells treated with lysophosphatidic acid (LPA). LPA activates six different G protein-coupled re...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL570                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce93d5152c60c61e09b94"/>
+                        <!--title-->
+                        <a id="result_589ce93d5152c60c61e09b94" href="https://datamed.org/display-item.php?repository=0003&id=589ce93d5152c60c61e09b94&query=mcf7">
+                            Low concentrations of 17beta-estradiol effect on breast cancer cell line                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE4668                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of breast cancer MCF7/BUS cells treated with 17beta-estradiol (E2) at concentrations up to 100 pM. Results compared to that from an experiment examining the response to hormone starvation (GDS2323). Results provide insight into the E2 sensitivity of E2 inducible or suppressible genes."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of breast cancer <strong>MCF7</strong>/BUS cells treated with 17beta-estradiol (E2) at concentrations up to 100 pM. Results compared to that ...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL96                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce8a95152c60c61e099e0"/>
+                        <!--title-->
+                        <a id="result_589ce8a95152c60c61e099e0" href="https://datamed.org/display-item.php?repository=0003&id=589ce8a95152c60c61e099e0&query=mcf7">
+                            SMRT depleted breast cancer cell line response to estradiol: time course                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE57935                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of ER-alpha+ MCF7 breast cancer cells depleted for the silencing mediator of retinoic acid and thyroid hormone receptor (SMRT). SMRT depleted cells examined 4 and 24 hours following treatment with estradiol. Results provide insight into the role of SMRT in breast cancer progression."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of ER-alpha+ <strong>MCF7</strong> breast cancer cells depleted for the silencing mediator of retinoic acid and thyroid hormone receptor (SMR...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL6244                            </span>
+                            </p>
+                        
+
+                                    </li>
+                                <li>
+                    <p class="result-heading" data-html="true" title=""
+                       data-toggle="tooltip" data-placement="bottom">
+                        <!--checkbox-->
+                        <input name="share-check" type="checkbox" value="share-item-repository=0003&id=589ce5a45152c60c61e090bb"/>
+                        <!--title-->
+                        <a id="result_589ce5a45152c60c61e090bb" href="https://datamed.org/display-item.php?repository=0003&id=589ce5a45152c60c61e090bb&query=mcf7">
+                            Estradiol effect on ERK1/ERK2-deficient MCF-7 breast adenocarcinoma cells: time course                        </a>
+                        <!--repository label-->
+                                                    <span class="result-reposity label label-repo">
+                                <a href="https://datamed.org/search-repository.php?query=mcf7&repository=0003">
+                                    GEO                                </a>
+                            </span>
+                        
+                                            </p>
+
+                    <!--fields-->
+                                                <p class="result-field">
+                                <em>ID:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GSE24592                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Description:</em>
+                            <span title="" data-original-title="Analysis of MCF7 cells depleted of ERK1 or ERK2 and treated with estradiol for up to 24hrs. ERK1 and ERK2 are downstream effectors in the MAP kinase pathway; estrogen receptor α (ERα) and MAPKs play key roles in hormone-dependent cancers. Results provide insight into ERα and MAPK interactions."
+                                  data-toggle="tooltip" data-placement="right">
+                                Analysis of <strong>MCF7</strong> cells depleted of ERK1 or ERK2 and treated with estradiol for up to 24hrs. ERK1 and ERK2 are downstream effectors in...                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Types:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                Expression profiling by array                            </span>
+                            </p>
+                                                    <p class="result-field">
+                                <em>Instrument:</em>
+                            <span title="" data-original-title=""
+                                  data-toggle="tooltip" data-placement="right">
+                                GPL571                            </span>
+                            </p>
+                        
+
+                                    </li>
+                        </ol>
+        
+                <hr>
+                <!-- Pagination Panel ==== */ -->
+                                        <div class="pull-left" style="margin-right: 10px">
+        <span>Displaying 19</span>
+        <span>of 19</span>
+        <span>results for "<strong>mcf7"</strong></span>
+    </div>
+
+
+    <!-- Select number of results per page-->
+    <div class="pull-left">
+        <div class="dropdown">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdown-sort"
+                    data-toggle="dropdown">
+                20 Per Page
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=5&repository=0003&sort=relevance&sort=relevance" >5</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=10&repository=0003&sort=relevance&sort=relevance" >10</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance&sort=relevance" style="background-color: #D8D7D7;">20</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=50&repository=0003&sort=relevance&sort=relevance" >50</a>
+                    </li>
+                                    <li>
+                        <a href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=100&repository=0003&sort=relevance&sort=relevance" >100</a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+                        <div class="clearfix"></div>
+                        <div class="pull-left">
+        <ul id="search-pagination" class="pagination">
+            <li>
+                <a id="page_First" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance" aria-label="Previous">
+                    <span aria-hidden="true">First</span>
+                </a>
+            </li>
+            <li>
+                <a id="page_Previous" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+                            <li class="active">
+                    <a id="page_1" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance">1</a>
+                </li>
+                        <li>
+                <a id="page_Next" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li>
+                <a id="page_Last" href="https://datamed.org/search.php?searchtype=data&query=mcf7&offset=1&rowsPerPage=20&repository=0003&sort=relevance"
+                   aria-label="Next">
+                    <span aria-hidden="true">Last</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+                                    <div class="clearfix"></div>
+            </div>
+
+                        <div class="col-md-3 hidden-sm" style="display:none;">
+
+                                    <iframe scrolling="no"  style="width: 268px;height: 310px; border: none;margin-bottom: 30px" src=""></iframe>
+                                                            <div class="panel panel-success" id="recent">
+            <div class="panel-heading"><strong>Recent Activity</strong></div>
+            <div class="panel-body">
+                <ul class="no-disk">
+                                <li>
+                            <span class="fa fa-search"></span>
+                            <a href="https://datamed.org/search.php?query=mcf7&searchtype=data">mcf7(data)</a>
+                        </li>
+                                                </ul>
+            </div>
+            <div class="panel-footer">
+                <a class="hyperlink" href="https://datamed.org/recentactivity.php">See more and save search query</a>
+            </div>
+        </div>
+                        
+    <div class="panel panel-primary" id="synonym">
+        <div class="panel-heading">
+            <strong>Synonyms </strong>
+        </div>
+
+        <div class="panel-body">
+                <ul class="no-disk">
+                                    </ul>
+        </div>
+
+        <div class="panel-footer">
+            <a href="expanded-query.php?q=mcf7">See more</a>
+        </div>
+    </div>
+
+
+                    
+    <div class="panel panel-primary" id="details">
+        <div class="panel-heading">
+            <strong>Search Details </strong>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group span6">
+                <textarea class="form-control" rows="5" id="comment">(data)"mcf7"</textarea>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <div class="container">
+        <p class="muted text-center blackgray add_padding">bioCADDIE is supported by the
+            <a href="http://grants.nih.gov/grants/guide/rfa-files/RFA-HL-14-031.html" target="_blank" class="white hyperlink">National Institutes of Health</a>
+            through the Big Data to Knowledge, Grant 1U24AI117966-01. 
+            <a href="http://www.nih.gov/" target="_blank" class="white hyperlink">NIH | </a>
+            <a href="http://www.ucsd.edu/" target="_blank" class="white hyperlink">UCSD | </a>
+            <a href="http://healthsciences.ucsd.edu/som/medicine/divisions/dbmi/pages/default.aspx" target="_blank" class="white hyperlink">DBMI</a>
+        </p>
+        <p class="muted text-center blackgray add_padding">For more information about bioCADDIE, please visit<a href="https://biocaddie.org" target="_blank" class="white hyperlink"> bioCADDIE</a></p>
+    </div>
+</div>
+
+
+
+<!--Datasets2Tools-->
+<script src="datasets2tools.js"></script>
+<link rel="stylesheet" type="text/css" href="datasets2tools.css">
+
+</body>
+
+</html>

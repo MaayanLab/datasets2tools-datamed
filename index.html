@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Datasets2Tools for Datamed</title>
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/font-awesome.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="main_container">
+				<div id="title_container">
+					<div class="row">
+						<p id="page_title" class="col text-center">
+							Canned Analyses for DataMed.org
+						</p>
+						<hr width="50%">
+					</div> <!-- .row -->
+				</div> <!-- .title-container -->
+				<div id="example_container" class="container">
+					<div class="row">
+						<div class="col text-justify">
+							<p class="subtitle-1" id="demos">
+								Demos
+							</p>
+							<hr width="25%">
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div class="row">
+						<div class="col col-md-6 text-center">
+							<p class="subtitle-1">
+								Dataset Search Page
+							</p>
+							<a href="datamed_search.html">
+								<div class="example_img_container">
+									<img src="img/search.png" class="datamed_img" id="search_img">
+								</div> <!-- .example_img_container -->
+							</a>
+						</div> <!-- .col -->
+						<div class="col col-md-6 text-center">
+							<p class="subtitle-1">
+								Dataset Landing Page
+							</p>
+							<a href="datamed_landing.html">
+								<div class="example_img_container">
+									<img src="img/landing.png" class="datamed_img" id="landing_img">
+								</div> <!-- .example_img_container -->
+							</a>
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div class="row">
+						<div class="col col-md-12 text-justify">
+							The images above link to two mock-up webpages from <a href="https://datamed.org/">https://datamed.org/</a> edited to incorporate an interface to browse Canned Analyses.  The HTML content of the websites are identical to the original, but they have been edited to incorporate two files: <a href="datasets2tools.js">datasets2tools.js</a> and <a href="datasets2tools.css">datasets2tools.css</a>.  Complete access to the code is available on the project's <a href="https://github.com/denis-torre/datasets2tools-datamed">GitHub page</a>.
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+				</div> <!-- #example_container -->
+				<div id="description_container" class="container">
+					<div class="row">
+						<div id="overview_row" class="col text-justify">
+							<p class="subtitle-1">
+								Overview
+							</p>
+							<hr width="25%">
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div class="row is-flex">
+						<div class="col col-md-4 text-center">
+							<p class="subtitle-2">
+								What is a Canned Analysis?
+							</p>
+							<p class="subtext-2">
+								A Canned Analysis is a pre-run analysis of a biomedical dataset by computational tool.  It is stored on a website and can be easily accessed by any user.
+							</p>
+						</div> <!-- .col -->
+						<div class="col col-md-4 text-center">
+							<p class="subtitle-2">
+								Where are they indexed?
+							</p>
+							<p class="subtext-2">
+								Information about Canned Analyses, relevant datasets, and tools is currently indexed in a database managed by the <a href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab</a> at the <a href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>.
+							</p>
+						</div> <!-- .col -->
+						<div class="col col-md-4 text-center">
+							<p class="subtitle-2">
+								Where are they hosted?
+							</p>
+							<p class="subtext-2">
+								Canned Analyses are hosted on websites maintained by external developers.  We do not currently provide hosting services.
+							</p>
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+				<div id="description_container">
+					<div class="row">
+						<div class="col text-justify">
+							<p class="subtitle-1">
+								Key Features
+							</p>
+							<hr width="25%">
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div id="key_features_row" class="row is-flex">
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-database fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Dataset
+							</p>
+							<p class="subtext-2">
+								The first key feature of a Canned Analysis is a biomedical dataset.  It is identified by a unique accession, and must be accessible through an online repository.
+							</p>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Tool
+							</p>
+							<p class="subtext-2">
+								The second key feature is a computational tool.  It must be able to perform an analysis on the specified dataset, and has its own website.
+							</p>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-link fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								URL
+							</p>
+							<p class="subtext-2">
+								The third key feature is the Canned Analysis URL.  It is a hard-coded link to a webpage containing the results of the analysis run by the tool on the dataset.
+							</p>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-tags fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Annotations
+							</p>
+							<p class="subtext-2">
+								Canned Analyses can be annotated by adding a brief description and any number of relevant metadata tags or keywords.
+							</p>
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div class="row">
+						<div class="col text-center">
+							<p class="subtitle-1">
+								Properties
+							</p>
+							<hr width="25%">
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+					<div id="properties_row" class="row is-flex">
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-search fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Findable
+							</p>
+							<div class="subtext-2">
+								Canned analyses relevant to the desired data can be easily found by using the embedded interfaces.
+								They are available on dataset search result pages and dataset landing pages.  Demos available <a href="#demos">here</a>.<br>&nbsp
+							</div>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-universal-access fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Accessible
+							</p>
+							<div class="subtext-2">
+								Canned analyses can be rapidly accessed by clicking on the links provided in the embedded interfaces.  They are displayed as small icons with the tool's logo.
+							</div>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-connectdevelop fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Flexible
+							</p>
+							<div class="subtext-2">
+								Canned analyses can support multiple data types, tool types and analysis types.
+							</div>
+						</div> <!-- .col -->
+						<div class="col col-md-3 text-center col-padding-top">
+							<i class="fa fa-share-alt fa-3x" aria-hidden="true"></i>
+							<p class="subtitle-2">
+								Shareable
+							</p>
+							<div class="subtext-2">
+								Canned analyses can be easily shared by copy-pasting their URLs, or by embedding them as icons in websites.
+								The interface provides access to both solutions.
+							</div>
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+				</div> <!-- #description_container -->
+				<hr width="100%">
+				<div id="footer">
+					<div class="row">
+						<div class="col col-md-12 text-center">
+								Developed by the <a href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab</a> at the <a href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>.
+						</div> <!-- .col -->
+					</div> <!-- .row -->
+				</div>
+			</div> <!-- #main_container -->
+		</div> <!-- #wrap -->
+	</body>
+
+</html>

@@ -1,0 +1,647 @@
+.datasets2tools-button {
+  outline: none;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+}
+
+.datasets2tools-logo-button {
+  background: url(./icons/icon_128.png);
+  background-size: 100%;
+  height: 35px;
+  width: 35px;
+  margin: 5px;
+}
+
+.datasets2tools-tool-icon-button {
+  height: 35px;
+  width: 35px;
+  border: 1px solid grey;
+}
+
+.datasets2tools-browse-arrow {
+  height: 20px;
+  width: 20px;
+  border: solid 0.5px #d3d3d3;
+}
+
+.datasets2tools-disabled-arrow {
+  display: none;
+}
+
+.datasets2tools-browse-arrow-left {
+  background: url(./icons/arrow-left.png) no-repeat;
+  background-size: 100%;
+}
+
+.datasets2tools-browse-arrow-right {
+  background: url(./icons/arrow-right.png) no-repeat;
+  background-size: 100%;
+}
+
+.datasets2tools-download-metadata-button {
+  background: url(./icons/download.png) no-repeat;
+  background-size: 100%;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 7px;
+}
+
+.datamed-search .datasets2tools-download-metadata-button {
+  top: -10px;
+}
+
+.datamed-landing .datasets2tools-download-metadata-button {
+  top: -14px;
+}
+
+.datasets2tools-share-button {
+  background: url(./icons/share.png) no-repeat;
+  background-size: 100%;
+  height: 25px;
+  width: 25px;
+}
+
+.datasets2tools-tool-info-button {
+  background: url(./icons/info.png) no-repeat;
+  background-size: 100%;
+  height: 10px;
+  width: 10px;
+  vertical-align: top;
+  display: table-cell;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.datasets2tools-close-tool-info-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: white;
+  text-decoration:none;
+  border: none;
+  outline: none;
+}
+
+.datasets2tools-metadata-download-button {
+  border: 1px solid #d3d3d3;
+  background-color: #fcfcfc;
+  margin-top: 5px;
+}
+
+.datasets2tools-metadata-download-button:hover {
+  background-color: #efefef;
+}
+
+.datasets2tools-copy-button {
+  border: 1px solid #d3d3d3;
+  background-color: #fcfcfc;
+  margin-top: 3px;
+}
+
+.datasets2tools-copy-button:hover {
+  border: 1px solid #d3d3d3;
+  background-color: #efefef;
+  margin-top: 3px;
+}
+
+
+
+.datasets2tools-browse-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+.datasets2tools-browse-table th {
+  background-color: #cccccc;
+  border: 0.5px solid #a5a5a5;
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.datamed-landing th {
+  background-color: #B5EBA9;
+  border: none;
+}
+
+.datamed-search .datasets2tools-browse-table tr {
+  color: black;
+  border: 1px dotted grey;
+}
+
+.datamed-landing tr {
+  border: none;
+}
+
+.datasets2tools-browse-table tr:nth-child(odd){
+  background-color: #f8f7f2;
+}
+
+.datasets2tools-browse-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.datasets2tools-browse-table td {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.datasets2tools-link-col {
+  width: 58px;
+}
+
+.datasets2tools-canned-analysis-description {
+  font-size: small;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0px 15px;
+}
+
+.datasets2tools-metadata-col {
+  width: 100px;
+}
+
+.datasets2tools-share-col {
+  width: 75px;
+}
+
+.datasets2tools-dropdown-hover {
+  display: inline-block;
+  position: relative;
+}
+
+.datasets2tools-dropdown-text {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  float: left;
+  color: black;
+  background-color: #fff;
+  border: 1px solid grey;
+  border-radius: 6px;
+  margin-top: 15px;
+  font-size: small;
+  padding: 7px 11px;
+}
+
+.datasets2tools-dropdown-hover .datasets2tools-dropdown-text::after {
+  content: "";
+  border-color: transparent transparent grey transparent;
+  border-width: 5px;
+  border-style: solid;
+  position: absolute;
+  bottom: 100%;
+  margin-top: -5px;
+}
+
+.datasets2tools-metadata-dropdown-text {
+  width: 150px;
+  top: 3px;
+  left: -15px;
+  text-align: left;
+}
+
+.datasets2tools-metadata-dropdown-hover .datasets2tools-dropdown-text::after {
+  left: 25px;
+}
+
+.datasets2tools-share-dropdown-text {
+  width: 175px;
+  top: 15px;
+  left: -20px;
+  text-align: left;
+}
+
+.datasets2tools-share-dropdown-hover .datasets2tools-dropdown-text::after {
+  left: 25px;
+}
+
+.datasets2tools-cannedanalysis-link-img {
+  height: 25px;
+  width: 25px;
+  border: 0.5px solid #d3d3d3;
+  padding: 1px;
+}
+
+.datasets2tools-cannedanalysis-link-img:hover {
+  border: 0.5px solid black;
+}
+
+.datasets2tools-view-metadata-img {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: -30px;
+}
+
+.datamed-search .datasets2tools-view-metadata-img {
+  top: -10px;
+}
+
+.datamed-landing .datasets2tools-view-metadata-img {
+  top: -14px;
+}
+
+.datasets2tools-dropdown-icons-img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+.datasets2tools-cannedanalysis-link-img:hover {
+  border: 0.5px solid black;
+}
+
+.datasets2tools-view-metadata-img {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: -10px;
+  left: -30px;
+}
+
+.datasets2tools-selected-tool-img {
+  height: 33px;
+  width: 33px;
+  padding: 1px;
+  border: 0.5px solid grey;
+  vertical-align: middle;
+  display: table-cell;
+  margin-top: 7px;
+  margin-left: 7px;
+}
+
+.datasets2tools-dropdown-icons-img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+
+.datasets2tools-expand {
+  display: none;
+}
+
+.datasets2tools-toolbar {
+  box-sizing: content-box;
+  position: relative;
+}
+
+.datasets2tools-search-bar {
+  border: solid 1px black;
+  display: inline-block;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.datasets2tools-browse-bar {
+  display: inline-block;
+  width: 100%;
+}
+
+.datasets2tools-logo-tab {
+  display: table;
+  float: left;
+  border-right: solid 1px black;
+  padding: 0px 10px;
+  height: 100%;
+}
+
+.datasets2tools-tool-icon-tab {
+  float: left;
+}
+
+.datasets2tools-selected-tool-tab {
+  float: left;
+  height: 100%;
+  display: table;
+}
+
+.datasets2tools-search-tab {
+  height: 100%;
+  border-left: 1px solid black;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.datasets2tools-browse-table-arrow-tab {
+  float: right;
+  margin-top: 5px;
+  font-size: small;
+}
+
+.datamed-landing .datasets2tools-browse-table-arrow-tab {
+  margin-bottom: 10px;
+}
+
+.datasets2tools-tool-info-tab {
+  display: none;
+  width: 100%;
+  border: 1px solid black;
+  position: relative;
+  top: -1px;
+  font-size: small;
+  padding: 10px 15px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.datasets2tools-no-results-tab {
+  font-size: small;
+}
+
+.datasets2tools-search-label {
+  float: left;
+  padding-right: 15px;
+}
+
+.datasets2tools-search-input {
+  overflow: hidden;
+  padding-top: 15px;
+}
+
+.datasets2tools-search-text-input {
+  line-height: 12px;
+  vertical-align: middle;
+  border: 1px solid #DCDCDC;
+}
+
+.datamed-search .datasets2tools-search-text-input {
+  width: 95%;
+}
+
+.datamed-landing .datasets2tools-search-text-input {
+  width: 30%;
+}
+
+.datasets2tools-title-label {
+  text-align: right;
+  font-size: small;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.datasets2tools-tool-info-label {
+  display: none;
+  text-align: center;
+  font-size: large;
+  margin-top: 13px;
+}
+
+.datasets2tools-selected-tool-label {
+  font-size: small;
+  vertical-align: middle;
+  display: table-cell;
+  padding-left: 10px;
+}
+
+.datasets2tools-search-label {
+  margin-top: 15px;
+}
+
+.datasets2tools-textarea {
+  margin-top: 3px;
+  font-size: smaller;
+  width: 100%;
+}
+
+.datasets2tools-tooltable-wrapper {
+  width: 100%;
+}
+
+.datamed.datasets2tools-tooltable-wrapper {
+  padding: 15px 10px;
+}
+
+.datasets2tools-tool-table {
+  width: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+.datasets2tools-back {
+  cursor: pointer;
+}
+
+.datasets2tools-table-intro {
+  padding: 10px 5px;
+}
+
+.datasets2tools-tool-table th {
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+
+.datasets2tools-tooltable-tool-header {
+  width: 20%;
+}
+
+.datasets2tools-tooltable-cannedanalysis-header {
+  width: 20%;
+}
+
+.datamed .datasets2tools-tool-table th {
+  background-color: #B5EBA9;
+  color: black;
+  height: 30px;
+}
+
+.datasets2tools-tool-table tr:nth-child(odd){
+  background-color: #f8f7f2
+}
+
+.datasets2tools-tool-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.datasets2tools-tool-table td {
+  border: none;
+}
+
+.datasets2tools-tooltable-tool-col {
+  display: table;
+}
+
+td .datasets2tools-tooltable-description-col {
+  padding-left: 20px;
+}
+
+.datasets2tools-tooltable-cannedanalysis-col {
+  text-align: center;
+}
+
+.datasets2tools-tooltable-tool-img {
+  display: table-cell;
+  vertical-align: middle;
+  border: 1px solid #d3d3d3;
+  padding: 1px;
+}
+
+.datamed .datasets2tools-tooltable-tool-img {
+  height: 35px;
+  width: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.datasets2tools-toolinfo-tool-img {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  border: 1px solid black;
+  padding: 1px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.datasets2tools-tooltable-tool-label {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+  width: 100%;
+  font-weight: 600;
+  color: black;
+}
+
+.datasets2tools-tooltable-tool-label:visited {
+  color: black;
+}
+
+.datamed .datasets2tools-tooltable-tool-label {
+  padding-left: 10px;
+  font-size: 10pt;
+}
+
+.datasets2tools-tooltable-plus-button {
+  background: url(./icons/plus.png);
+  background-size: 100%;
+  height: 20px;
+  width: 20px;
+  margin-left: 20px;
+  margin-top: -3px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.datamed-landing.datasets2tools-main {
+  margin: 5px 10px;
+}
+
+.datasets2tools-tooltable-toolintro {
+  display: table;
+  margin-top: 10px;
+  padding: 10px 25px 10px 5px;
+}
+
+.datasets2tools-tooltable-toolname {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 15px;
+  font-weight: 800;
+  font-size: 15pt;
+}
+
+.datasets2tools-tooltip-hover {
+  display: inline-block;
+  position: relative;
+}
+
+.datasets2tools-tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  float: left;
+  color: #fff;
+  z-index: 2147483647;
+  background-color: black;
+  border-radius: 6px;
+  font-size: small;
+}
+
+.datasets2tools-tooltip-hover:hover .datasets2tools-tooltip-text {
+  visibility: visible;
+}
+
+.datasets2tools-tooltip-hover .datasets2tools-tooltip-text::after {
+  content: "";
+  border-color: transparent transparent black transparent;
+  border-width: 5px;
+  border-style: solid;
+  position: absolute;
+  bottom: 100%;
+  margin-top: -5px;
+}
+
+.datasets2tools-toolicon-tooltip-hover {
+  margin: 7px 10px;
+}
+
+.datasets2tools-toolicon-tooltip-text {
+  width: 250px;
+  top: 41px;
+  padding: 7px 7px;
+  font-size: x-small;
+  line-height: 17px;
+  text-align: left;
+}
+
+.datasets2tools-toolicon-tooltip-hover .datasets2tools-tooltip-text::after {
+  left: 13px;
+}
+
+.datamed-search .datasets2tools-description-tooltip-text {
+  width: 300px;
+  top: 5px;
+  left: -250px;
+  margin-top: 15px;
+  padding: 7px 11px;
+}
+
+.datamed-landing .datasets2tools-description-tooltip-text {
+  width: 500px;
+  top: 5px;
+  left: -500px;
+  margin-top: 15px;
+  padding: 7px 11px;
+}
+
+.datasets2tools-description-tooltip-hover .datasets2tools-tooltip-text::after {
+  right: 50%;
+}
+
+.datasets2tools-metadata-tooltip-text {
+  width: 175px;
+  top: 3px;
+  left: -50px;
+  text-align: left;
+  margin-top: 15px;
+  padding: 7px 11px;
+}
+
+.datasets2tools-metadata-tooltip-text b {
+  color: white;
+}
+
+.datasets2tools-metadata-tooltip-hover .datasets2tools-tooltip-text::after {
+  left: 25px;
+}
+
+.datasets2tools-toolintro-subtitle {
+  font-style: italic;
+  margin-top: 15px;
+}

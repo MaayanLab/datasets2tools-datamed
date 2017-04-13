@@ -1,0 +1,707 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"canne",
+				"cannedanalysis-browse"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"over",
+				"overflow-y"
+			],
+			[
+				"pare",
+				"parentTable"
+			],
+			[
+				"tool",
+				"toolArray"
+			],
+			[
+				"font-",
+				"font-style"
+			],
+			[
+				"canned",
+				"cannedanalysis-display"
+			],
+			[
+				"div",
+				"divToActivateId"
+			],
+			[
+				"too",
+				"toolHTMLdiv"
+			],
+			[
+				"prepare",
+				"prepareToolDivs"
+			],
+			[
+				"serie",
+				"seriesAccession"
+			],
+			[
+				"cann",
+				"cannedanalysis-icon-bar"
+			],
+			[
+				"al",
+				"align-items"
+			],
+			[
+				"ta",
+				"table-cell"
+			],
+			[
+				"v",
+				"vertical-align"
+			],
+			[
+				"p",
+				"padding-bottom"
+			],
+			[
+				"t",
+				"table-cell"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"dro",
+				"dropdownParents"
+			],
+			[
+				"dropD",
+				"dropdownParents"
+			],
+			[
+				"drop",
+				"dropbtn"
+			],
+			[
+				"icon",
+				"iconParents"
+			],
+			[
+				"paddi",
+				"padding-bottom"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"but",
+				"buttonHTMLdiv"
+			],
+			[
+				"Data",
+				"Datasets2ToolsAPI"
+			],
+			[
+				"Pubme",
+				"PubMedID"
+			],
+			[
+				"geoSearch",
+				"geoSearchResults"
+			],
+			[
+				"datasetS",
+				"datasetSelectionMethod"
+			],
+			[
+				"dataset-searc",
+				"dataset-search-results-radio-form"
+			],
+			[
+				"dataset-search-",
+				"dataset-search-form"
+			],
+			[
+				"rad",
+				"radioHtmlString"
+			],
+			[
+				"resu",
+				"resultHtmlList"
+			],
+			[
+				"key",
+				"keyName"
+			],
+			[
+				"RESUL",
+				"resultHtmlList"
+			],
+			[
+				"get",
+				"geoSearchObject"
+			],
+			[
+				"geoS",
+				"geoSearchResults"
+			],
+			[
+				"data",
+				"datasetSearchInput"
+			],
+			[
+				"dataset-selec",
+				"dataset-selection-search-button"
+			],
+			[
+				"datas",
+				"dataset-selection-manual"
+			],
+			[
+				"sele",
+				"selectpicker"
+			],
+			[
+				"my",
+				"myButton"
+			],
+			[
+				"tabl",
+				"tableObject"
+			],
+			[
+				"htm",
+				"htmlTable"
+			],
+			[
+				"table",
+				"tableString"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"onKe",
+				"onkeyup\tAttr"
+			],
+			[
+				"ov",
+				"overflow-y"
+			],
+			[
+				"upload",
+				"upload-form"
+			],
+			[
+				"dataset",
+				"dataset_selection"
+			],
+			[
+				"text",
+				"text-top"
+			],
+			[
+				"s",
+				"super"
+			],
+			[
+				"geo",
+				"geo_accession"
+			],
+			[
+				"signature",
+				"signature_ids"
+			],
+			[
+				"nr",
+				"nr_signatures_list"
+			],
+			[
+				"search",
+				"search_text"
+			],
+			[
+				"attri",
+				"attributes_list"
+			],
+			[
+				"attrib",
+				"attributes_xml"
+			],
+			[
+				"sear",
+				"search_string"
+			],
+			[
+				"ge",
+				"geo_type"
+			],
+			[
+				"atrt",
+				"attributes_dict"
+			],
+			[
+				"sea",
+				"search_url"
+			],
+			[
+				"xml",
+				"xml_dict"
+			],
+			[
+				"geo_",
+				"geo_id_list"
+			],
+			[
+				"query",
+				"query_dict"
+			],
+			[
+				"sa",
+				"search_url"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"sarch",
+				"search_string"
+			],
+			[
+				"pas",
+				"PasswordField"
+			],
+			[
+				"back",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "extension/datasets2tools.js",
+			"settings":
+			{
+				"buffer_size": 6204,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "extension/button.css",
+			"settings":
+			{
+				"buffer_size": 1547,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/denis/Documents/Projects/datasets2tools/project-datasets2tools-chrome-extension",
+		"/Users/denis/Documents/Projects/datasets2tools/project-datasets2tools-chrome-extension/extension"
+	],
+	"file_history":
+	[
+		"/Users/denis/Documents/Projects/datasets2tools/project-datasets2tools-website/Dockerfile",
+		"/Users/denis/Documents/Projects/trash/project-helloworld/docker/Dockerfile",
+		"/Users/denis/Documents/Projects/datasets2tools/project-datasets2tools-chrome-extension/extension/manifest.json",
+		"/Users/denis/Desktop/Untitled.svg",
+		"/Users/denis/Documents/Projects/datasets2tools/project-datasets2tools-tests/project-datasets2tools-tests.sublime-workspace",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/src/main.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/src/PreAjax.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/src/ScreenScraper.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/src/Interface.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/project-cite-d-lite_debugging/extension/cite-d-lite new.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/extension/manifest.json",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/package.json",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/gruntfile.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/extension/cite-d-lite.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/Cite-D-Lite/Cite-D-Lite.sublime-project",
+		"/Users/denis/Documents/Cite-D-Lite/package.json",
+		"/Users/denis/Documents/Cite-D-Lite/gruntfile.js",
+		"/Users/denis/Documents/Cite-D-Lite/extension/manifest.json",
+		"/Users/denis/Documents/Projects/cite-d-lite/project-cite-d-lite_debugging/extension/manifest.json",
+		"/Users/denis/Documents/Projects/cite-d-lite/project-cite-d-lite_debugging/extension/cite-d-lite.js",
+		"/Users/denis/Documents/Projects/cite-d-lite/project-cite-d-lite_debugging/extension/button.css",
+		"/Users/denis/Documents/Projects/project-cite-d-lite_debugging/extension/manifest.json",
+		"/Users/denis/Documents/Projects/project-cite-d-lite_debugging/extension/cite-d-lite.js",
+		"/Users/denis/Documents/Projects/Cite-D-Lite/extension/manifest.json",
+		"/Users/denis/Documents/Projects/Cite-D-Lite/extension/cite-d-lite.js",
+		"/Users/denis/Documents/Projects/test/flaskr/__init__.py",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/templates/index.html",
+		"/Users/denis/Documents/Projects/test/flaskr/templates/searchDataset.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/static/lib/py/lib.py",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/static/lib/lib.py",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/static/lib/js/lib.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/6.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/static/lib/js/lib1.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools_tests/flaskr/static/js/lib.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/templates/save.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/templates/index.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/__init__.py",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/__init__.py",
+		"/Users/denis/Documents/Projects/test/flaskr/templates/signUp.html",
+		"/Users/denis/Documents/Projects/test/flaskr/static/script.js",
+		"/Users/denis/Documents/Projects/test/flaskr/templates/index.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/templates/test.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/static/style/main.css",
+		"/Users/denis/Documents/Projects/project-datasets2tools/style/main.css",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/templates/new.html",
+		"/Users/denis/Downloads/bootstrap-select-1.11.2/test.html",
+		"/Users/denis/Desktop/test.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/static/lib/lib.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools/mysql/dbprocedures.sql",
+		"/Users/denis/Documents/Projects/test/flaskr/templates/index.php",
+		"/Users/denis/Documents/Projects/test/flaskr/static/lib/getuser2.php",
+		"/Users/denis/Documents/Projects/test/flaskr/static/lib/getuser1.php",
+		"/Users/denis/Documents/Projects/test/flaskr/static/lib/getuser.php",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/static/lib/browserFunctions.py",
+		"/Users/denis/Documents/Projects/project-datasets2tools/mysql/dbdata.sql",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/static/lib/test.js",
+		"/Users/denis/Documents/Projects/project-datasets2tools/flaskr/templates/template.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/index.html",
+		"/Users/denis/Documents/Projects/project-datasets2tools/mysql/dbschema.sql",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/static/style/main.css",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/datasets.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/new.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/test.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/tools/g2e.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/browse.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/tools/index.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/templates/tools.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/main.py",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/static/index.html",
+		"/Users/denis/Documents/Projects/project-g2e_browser/flaskr/static/lib/bootstrap/css/bootstrap.css",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/profile.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/static/style.css",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/user.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/shopping.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/__init__.py",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/schema.sql",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/show_entries.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/login.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/layout.html",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/flaskr.py",
+		"/Users/denis/Documents/Projects/project-flask/flaskr/templates/schema.sql",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/myScript.js",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/styles.css",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/datasets/index.html",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/tools/index.html",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/newanalysis/index.html",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/index.html",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/Dockerfile",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/data/datasets.txt",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/style.css",
+		"/Users/denis/Documents/Projects/project-helloworld/docker/src/index.php",
+		"/Users/denis/Documents/Projects/project-01/docker/Dockerfile",
+		"/Users/denis/Documents/Projects/project-01/docker/src/index.php",
+		"/Users/denis/Documents/Computation/Packages & Software Installed",
+		"/Users/denis/Documents/Projects/project-01/docker/src/index.html",
+		"/Users/denis/Documents/Projects/Project_Mapping"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"L1000CDS2",
+			"parentTable",
+			"cannedanalysis-results",
+			"parentTable",
+			"tool-div",
+			"prepareToolDivs",
+			"cannedanalysis-icon",
+			"\"cannedanalysis-icon\"",
+			"cannedanalysis-icon",
+			"cannedanalysis-text",
+			"outerhtml",
+			"2.3",
+			"prepareIconBar",
+			"prepareDropdownMenu",
+			"toolicon",
+			"prepareIconbar",
+			"prepareIconMenu",
+			"seriesId",
+			"prepareToolButton",
+			"buttonHTMLdiv",
+			"prepareButton",
+			"1.0.0",
+			"version",
+			"PubMedId = ",
+			"hello!",
+			"getpubmedid",
+			"PubMedID",
+			"pubmedid",
+			"getPubMedID",
+			"var PubMedI",
+			"getPubMedID",
+			"getIntoAbstractPage",
+			"PubMedID",
+			"http://",
+			"isGEO",
+			"Stding",
+			"tr",
+			"resultHtmlstring",
+			"inputs",
+			"jquery",
+			"query",
+			"\"/",
+			"\"/javascript/",
+			"/javascript",
+			"/javascript/library",
+			"/javascript",
+			"span",
+			"script",
+			"link",
+			"select",
+			"sql_engine",
+			"test",
+			"static",
+			"Encode",
+			"\n            ",
+			" {{",
+			"query_dict",
+			"search_param",
+			" }}"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "extension/datasets2tools.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2720,
+								2720
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 791.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "extension/button.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1543,
+								1543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 478.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "project-datasets2tools-chrome-extension.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mani",
+				"extension/manifest.json"
+			],
+			[
+				"cite-d",
+				"Cite-D-Lite.sublime-project"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 301.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

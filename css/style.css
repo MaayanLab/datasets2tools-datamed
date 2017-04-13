@@ -1,0 +1,97 @@
+body {
+   font-family: "Roboto";
+   font-weight: 200;
+   font-size: 13px;
+}
+
+hr {
+	text-align: center;
+	margin: 0 auto;
+}
+
+#page_title {
+	padding-top: 15px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+#search_img {
+	max-height: 95%;
+	max-width: 95%;
+	padding-top: 10px;
+}
+
+#landing_img {
+	max-height: 95%;
+	max-width: 95%;
+	padding-top: 5px;
+}
+
+.container {
+	max-width: 900px;
+}
+
+.col-md-3,
+.col-md-4 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#key_features_row .fa:hover {
+	color: #9acfea;
+	transition: 0.5s;
+}
+
+#properties_row .fa:hover {
+	color: #B5EBA9;
+	transition: 0.5s;
+}
+
+.col > .fa {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.example_title {
+	font-size: 17px;
+}
+
+.example_img_container {
+	height: 200px;
+	width: 100%;
+	border: 1px solid #DEDEDE;
+}
+
+.datamed_img:hover {
+	opacity: 0.5;
+	transition: 0.2s;
+}
+
+.subtitle-1 {
+	font-weight: 800;
+	font-size: 18px;
+	text-align: center;
+	background-color: white;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+#example_container .subtitle-1 {
+	margin-top: 10px;
+}
+
+#example_container .col-md-12 {
+	padding-top: 15px;
+}
+
+.subtitle-2 {
+	font-size: 15px;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+#footer {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 12px;
+}
